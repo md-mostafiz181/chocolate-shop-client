@@ -1,5 +1,6 @@
 
 
+
 const AddChocolate = () => {
 
     const handleAddChocolate = e => {
@@ -10,6 +11,19 @@ const AddChocolate = () => {
         const category=form.category.value;
         const newChocolate= {name,country, category}
         console.log(newChocolate)
+        
+
+        fetch("http://localhost:5000/chocolates", {
+            method: "POST",
+            headers:{
+                "content-type": "application/json"
+            },
+            body:JSON.stringify(newChocolate)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+        })
     }
     return (
         <div>
@@ -87,7 +101,7 @@ const AddChocolate = () => {
           </button>
         </form>
       </div>
-    </div>
+    </div> 
         </div>
     );
 };
